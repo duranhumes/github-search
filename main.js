@@ -12,6 +12,8 @@ const ui = new UI();
 const search = async () => {
     ui.clear();
     ui.clearAlert();
+    query.set('perPage', 10);
+    query.set('page', 1);
 
     if (!searchInput.value && query.currentQuery) {
         searchInput.value = query.currentQuery;
@@ -23,16 +25,6 @@ const search = async () => {
         ui.clear();
 
         return;
-    }
-
-    // Resets/syncs the page and perPage when
-    // the search input value and the url bar value
-    // are different, the url value is updated further
-    // down.
-    if (searchValue !== query.currentQuery) {
-        ui.clear();
-        query.set('perPage', 10);
-        query.set('page', 1);
     }
 
     const options = {
